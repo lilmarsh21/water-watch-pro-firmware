@@ -351,12 +351,31 @@ struct WaterWatchAckPacket {
 uint32_t lastRemoteCommandId = 0;
 uint32_t lastAckCommandId = 0;
 
-// Forward declarations used by command handler.
+// Forward declarations used by command handler / PlatformIO build.
 bool isPumpActive();
 void updateAuxOutput();
 void updatePumpOutput();
 void saveSettings();
 void cycleRelayMode();
+
+bool serviceDue();
+int rotatingDueIndex();
+bool pressureCalibrated();
+
+void drawDashboard();
+void drawSetupScreen();
+void drawCalibrateScreen();
+void drawTankSizeScreen();
+void drawLowAlertScreen();
+void drawTempRangeScreen();
+void drawTempLiveScreen();
+void drawPressureLiveScreen();
+void drawTotalHoursScreen();
+void drawMaintenanceScreen();
+
+void handleTap(int x, int y);
+void handleSwipe(int dx);
+void goScreen(int next);
 
 void sendCommandAck(uint8_t command, uint32_t commandId, bool accepted, uint8_t code) {
 #if REMOTE_SEND_ENABLED

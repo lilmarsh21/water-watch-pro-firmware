@@ -64,7 +64,7 @@ bool loadedSavedPacket = false;
 WebServer remoteUpdateServer(80);
 const char *REMOTE_OTA_AP_SSID = "WaterWatchPro-Remote";
 const char *REMOTE_OTA_AP_PASS = "12345678";
-const char *REMOTE_FIRMWARE_VERSION = "REMOTE V41 TEST";
+const char *REMOTE_FIRMWARE_VERSION = "REMOTE FIRMWARE V1.1";
 const unsigned long REMOTE_OTA_TIMEOUT_MS = 600000UL;  // 10 minutes
 bool remoteOtaActive = false;
 unsigned long remoteOtaStartedMs = 0;
@@ -72,7 +72,7 @@ String remoteOtaStatus = "READY";
 uint16_t remoteOtaStatusColor = 0x8410;
 
 // =====================================================
-// WATER WATCH PRO - 1.8 REMOTE RECEIVER - SAME DASH + TWO WAY V41_UPDATE_SCREEN_VERSION_TEST
+// WATER WATCH PRO - 1.8 REMOTE RECEIVER - SAME DASH + TWO WAY V1_1_UPDATE_SCREEN_BIGGER_TEXT
 // For the same Waveshare ESP32-S3 1.8" AMOLED display family.
 // This is the read-only remote display firmware.
 // It receives ESP-NOW packets from the main Water Watch Pro V10.4 sender.
@@ -1417,24 +1417,25 @@ void drawRemoteUpdatePage() {
   readRemoteBattery();
   gfx->fillScreen(C_BLACK);
 
-  centerText("UPDATE MODE", 18, 3, C_CYAN);
-  centerText("REMOTE DISPLAY", 54, 2, C_WHITE);
-  centerText(REMOTE_FIRMWARE_VERSION, 78, 1, C_ORANGE);
+  centerText("UPDATE MODE", 16, 3, C_CYAN);
+  centerText("REMOTE DISPLAY", 56, 2, C_WHITE);
+  centerText(REMOTE_FIRMWARE_VERSION, 88, 2, C_ORANGE);
 
   if (!remoteOtaActive) {
-    centerText("Wireless firmware update", 96, 1, C_GRAY);
-    centerText("Plug USB in before updating", 114, 1, C_ORANGE);
+    centerText("WIRELESS UPDATE", 124, 2, C_GRAY);
+    centerText("PLUG USB BEFORE UPDATE", 152, 1, C_ORANGE);
 
-    gfx->fillRoundRect(44, 170, 280, 64, 20, C_CARD2);
-    gfx->drawRoundRect(44, 170, 280, 64, 20, C_GREEN);
-    centerText("START UPDATE", 190, 2, C_GREEN);
+    gfx->fillRoundRect(34, 190, 300, 72, 22, C_CARD2);
+    gfx->drawRoundRect(34, 190, 300, 72, 22, C_GREEN);
+    gfx->drawRoundRect(36, 192, 296, 68, 20, C_GREEN);
+    centerText("START UPDATE", 213, 2, C_GREEN);
 
     centerText("Swipe to leave", 330, 1, C_GRAY);
     centerText(remoteOtaStatus, 360, 1, remoteOtaStatusColor);
     return;
   }
 
-  centerText("HOTSPOT ACTIVE", 88, 2, C_GREEN);
+  centerText("HOTSPOT ACTIVE", 116, 2, C_GREEN);
 
   gfx->setTextSize(1);
   gfx->setTextColor(C_GRAY, C_BLACK);
